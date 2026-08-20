@@ -1,14 +1,13 @@
 package local.noto.tasklist.services
 
-import jakarta.persistence.EntityNotFoundException
 import local.noto.tasklist.dtos.CreateTaskRequestDto
 import local.noto.tasklist.dtos.TaskResponseDto
 import local.noto.tasklist.dtos.UpdateTaskRequestDto
 import local.noto.tasklist.dtos.mapper.toEntity
 import local.noto.tasklist.dtos.mapper.toResponseDto
+import local.noto.tasklist.exceptions.ResourceNotFoundException
 import local.noto.tasklist.models.Task
 import local.noto.tasklist.repositories.TaskRepository
-import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Service
 
 @Service
@@ -37,11 +36,11 @@ class TaskService(
     }
 
     fun delete(id: Long) {
-        if(!taskRepository.existsById(id)) throw NoSuchElementException("Task with ID $id not found")
+        if(!taskRepository.existsById(id)) throw ResourceNotFoundException("Task with ID $id not found")
         taskRepository.deleteById(id)
     }
 
     fun findTaskOrThrow(id: Long): Task =
         taskRepository.findById(id)
-            .orElseThrow { EntityNotFoundException("Task with ID $id not found") }
+            .orElseThrow { ResourceNotFoundException("Task with ID $id not found") }
 }
