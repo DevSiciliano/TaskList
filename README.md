@@ -33,7 +33,7 @@ TODO: defined after development to imitate a productive database system.
 ## Roadmap
 - [x] Create Task logic to view, create, change and delete tasks
 - [x] Validating the task DTO (`@Valid, Bean Validation`)
-- [ ] Global exception handling with `@ControllerAdvice`
+- [x] Global exception handling with `@ControllerAdvice`
 - [ ] Unit and integration tests (JUnit, Mock)
 - [ ] Create Categories (like tasks) to sort tasks and create `findByCategory()`
 - [ ] Create User for login and registration
