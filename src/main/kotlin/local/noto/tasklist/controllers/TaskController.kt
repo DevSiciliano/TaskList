@@ -1,5 +1,6 @@
 package local.noto.tasklist.controllers
 
+import jakarta.validation.Valid
 import local.noto.tasklist.dtos.CreateTaskRequestDto
 import local.noto.tasklist.dtos.TaskResponseDto
 import local.noto.tasklist.dtos.UpdateTaskRequestDto
@@ -30,11 +31,11 @@ class TaskController(
         taskService.getById(id)
 
     @PostMapping
-    fun create(@RequestBody dto: CreateTaskRequestDto): TaskResponseDto  =
+    fun create(@Valid @RequestBody dto: CreateTaskRequestDto): TaskResponseDto  =
         taskService.create(dto)
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody dto: UpdateTaskRequestDto) =
+    fun update(@PathVariable id: Long, @Valid @RequestBody dto: UpdateTaskRequestDto) =
         taskService.update(dto, id)
 
     @DeleteMapping("/{id}")
