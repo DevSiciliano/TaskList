@@ -1,10 +1,12 @@
 package local.noto.tasklist
 
+import local.noto.tasklist.dtos.CreateTaskRequestDto
 import local.noto.tasklist.models.Task
 import local.noto.tasklist.repositories.TaskRepository
 import local.noto.tasklist.services.TaskService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import java.util.Optional
@@ -28,5 +30,21 @@ class TaskServiceTest {
         assertEquals("Hello World", result.description)
         assertEquals(1, result.priority)
         assertEquals(false, result.isCompleted)
+    }
+
+    @Test
+    fun `creates a new task`() {
+        // Arrange
+        val dto = CreateTaskRequestDto(title = "New Task", description = "Hello World", priority = 1)
+        val savedTask = Task(id = 42L, title = "New Task", description = "Hello World", priority = 1, isCompleted = false)
+
+        whenever(taskRepository.save(any())).thenReturn(savedTask)
+
+        // Act
+        val result = taskService.create(dto)
+
+        //Assert
+        assertEquals("New Task", result.title)
+        assertEquals("Hello World", result.description)
     }
 }
