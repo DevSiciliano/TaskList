@@ -35,7 +35,7 @@ class TaskController(
         taskService.create(dto)
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @Valid @RequestBody dto: UpdateTaskRequestDto) =
+    fun update(@PathVariable id: Long, @Valid @RequestBody dto: UpdateTaskRequestDto): TaskResponseDto =
         taskService.update(dto, id)
 
     @DeleteMapping("/{id}")
