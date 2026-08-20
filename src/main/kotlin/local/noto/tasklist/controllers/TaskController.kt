@@ -1,5 +1,9 @@
 package local.noto.tasklist.controllers
 
+import local.noto.tasklist.dtos.CreateTaskRequestDto
+import local.noto.tasklist.dtos.TaskResponseDto
+import local.noto.tasklist.dtos.UpdateTaskRequestDto
+import local.noto.tasklist.dtos.mapper.toResponseDto
 import local.noto.tasklist.models.Task
 import local.noto.tasklist.services.TaskService
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -14,26 +18,26 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/tasks")
 class TaskController(
-    private val TaskService: TaskService
+    private val taskService: TaskService
 ) {
 
     @GetMapping()
-    fun findAll(): List<Task> =
-        TaskService.getAll()
+    fun findAll(): List<TaskResponseDto> =
+        taskService.getAll()
 
     @GetMapping("/{id}")
-    fun findById(@PathVariable id: Long): Task =
-        TaskService.getById(id)
+    fun findById(@PathVariable id: Long): TaskResponseDto =
+        taskService.getById(id)
 
     @PostMapping
-    fun create(@RequestBody task: Task): Task =
-        TaskService.create(task)
+    fun create(@RequestBody dto: CreateTaskRequestDto): TaskResponseDto  =
+        taskService.create(dto)
 
     @PutMapping("/{id}")
-    fun update(@PathVariable id: Long, @RequestBody task: Task) =
-        TaskService.update(task, id)
+    fun update(@PathVariable id: Long, @RequestBody dto: UpdateTaskRequestDto) =
+        taskService.update(dto, id)
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long) =
-        TaskService.delete(id)
+        taskService.delete(id)
 }

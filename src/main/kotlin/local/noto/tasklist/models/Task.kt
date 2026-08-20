@@ -17,5 +17,5 @@ class Task(
 
     var priority: Int,
 
-    var isCompleted: Boolean,
+    var isCompleted: Boolean
 )

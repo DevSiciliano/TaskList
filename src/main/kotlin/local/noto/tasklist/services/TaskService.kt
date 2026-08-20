@@ -1,5 +1,11 @@
 package local.noto.tasklist.services
 
+import jakarta.persistence.EntityNotFoundException
+import local.noto.tasklist.dtos.CreateTaskRequestDto
+import local.noto.tasklist.dtos.TaskResponseDto
+import local.noto.tasklist.dtos.UpdateTaskRequestDto
+import local.noto.tasklist.dtos.mapper.toEntity
+import local.noto.tasklist.dtos.mapper.toResponseDto
 import local.noto.tasklist.models.Task
 import local.noto.tasklist.repositories.TaskRepository
 import org.springframework.data.jpa.repository.JpaRepository
@@ -10,29 +16,32 @@ class TaskService(
     private val taskRepository: TaskRepository
 ) {
 
-    fun getAll(): List<Task> =
-        taskRepository.findAll()
+    fun getAll(): List<TaskResponseDto> =
+        taskRepository.findAll().map { it.toResponseDto() }
 
-    fun getById(id: Long): Task =
-        taskRepository.findById(id)
-            .orElseThrow { NoSuchElementException("Task with ID $id not found") }
+    fun getById(id: Long): TaskResponseDto =
+        findTaskOrThrow(id).toResponseDto()
 
-    fun create(task: Task): Task =
-        taskRepository.save(task)
+    fun create(dto: CreateTaskRequestDto): TaskResponseDto =
+        taskRepository.save(dto.toEntity()).toResponseDto()
 
-    fun update(updated: Task, id: Long): Task {
-        val existingTask = getById(id)
+    fun update(dto: UpdateTaskRequestDto, id: Long): TaskResponseDto  {
+        val existingTask = findTaskOrThrow(id)
 
-        existingTask.title = updated.title
-        existingTask.description = updated.description
-        existingTask.priority = updated.priority
-        existingTask.isCompleted = updated.isCompleted
+        existingTask.title = dto.title
+        existingTask.description = dto.description
+        existingTask.priority = dto.priority
+        existingTask.isCompleted = dto.isCompleted
 
-        return taskRepository.save(existingTask)
+        return taskRepository.save(existingTask).toResponseDto()
     }
 
     fun delete(id: Long) {
         if(!taskRepository.existsById(id)) throw NoSuchElementException("Task with ID $id not found")
         taskRepository.deleteById(id)
     }
+
+    fun findTaskOrThrow(id: Long): Task =
+        taskRepository.findById(id)
+            .orElseThrow { EntityNotFoundException("Task with ID $id not found") }
 }
