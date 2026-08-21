@@ -19,13 +19,22 @@ A simple Task List / ToDo List as a showcase project written and built in Kotlin
 | PUT     | `/api/tasks/{id}`   | Update an existing task |
 | DELETE  | `/api/tasks/{id}`   | Delete a task           |
 
+### Category
+| Methode | Pfad              | Beschreibung            |
+|---------|-------------------|-------------------------|
+| GET     | `/api/category`   | Get all tasks           |
+| GET     | `/api/category/{id}` | Get a task by id        |
+| POST    | `/api/category`      | Create a new Task       |
+| PUT     | `/api/category/{id}` | Update an existing task |
+| DELETE  | `/api/category/{id}` | Delete a task           |
+
 ## Database
 
 ### H2
 For development this project is using the H2 Database in memory storage.<br>
 The Database URL is `jdbc:h2:mem:test` and to connect call `http://localhost:8080/h2-console`
 
-## PostgreSQL
+### PostgreSQL
 
 TODO: defined after development to imitate a productive database system.
 
