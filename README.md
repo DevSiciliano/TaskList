@@ -23,11 +23,11 @@ A simple Task List / ToDo List as a showcase project written and built in Kotlin
 ### Category
 | Methode | Pfad              | Beschreibung            |
 |---------|-------------------|-------------------------|
-| GET     | `/api/category`   | Get all tasks           |
-| GET     | `/api/category/{id}` | Get a task by id        |
-| POST    | `/api/category`      | Create a new Task       |
-| PUT     | `/api/category/{id}` | Update an existing task |
-| DELETE  | `/api/category/{id}` | Delete a task           |
+| GET     | `/api/category`   | Get all categroies           |
+| GET     | `/api/category/{id}` | Get a category by id        |
+| POST    | `/api/category`      | Create a new catgeory       |
+| PUT     | `/api/category/{id}` | Update an existing category |
+| DELETE  | `/api/category/{id}` | Delete a category           |
 
 ## Database
 
