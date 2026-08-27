@@ -5,7 +5,7 @@ A simple Task List / ToDo List as a showcase project written and built in Kotlin
 - <b>Kotlin</b> (Zulu SDK <b>21</b>)
 - Spring Boot
 - Spring Data JPA
-- H2 / <b>PostgreSQL</b> Database
+- <b>PostgreSQL</b> Database
 - Gradle
 
 ## API Endpoints
@@ -30,13 +30,14 @@ A simple Task List / ToDo List as a showcase project written and built in Kotlin
 
 ## Database
 
-### H2
-For development this project is using the H2 Database in memory storage.<br>
-The Database URL is `jdbc:h2:mem:test` and to connect call `http://localhost:8080/h2-console`
-
 ### PostgreSQL
+This project uses PostgreSQL. For local development, start it via Docker Compose:
 
-TODO: defined after development to imitate a productive database system.
+```
+docker compose up -d
+```
+
+This starts a Postgres instance on `localhost:5432` with database `tasklist`, user `tasklist` and password `tasklist` (see `docker-compose.yml`). The connection details are configured in `src/main/resources/application.properties`. Tables are created/updated automatically on startup via `spring.jpa.hibernate.ddl-auto=update`.
 
 
 ## Roadmap
@@ -46,6 +47,6 @@ TODO: defined after development to imitate a productive database system.
 - [x] Unit and integration tests (JUnit, Mock)
 - [x] Create Categories (like tasks) to sort tasks and create `findByCategory()`
 - [x] Create User for login and registration
-- [ ] Make tasks exchangeable between users
+- [x] Make tasks exchangeable between users
 - [ ] Swagger/OpenAPI Documentation
 - [ ] Dockerfile for easy deployment
