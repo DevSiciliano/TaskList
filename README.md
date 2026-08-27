@@ -44,8 +44,8 @@ TODO: defined after development to imitate a productive database system.
 - [x] Validating the task DTO (`@Valid, Bean Validation`)
 - [x] Global exception handling with `@ControllerAdvice`
 - [x] Unit and integration tests (JUnit, Mock)
-- [ ] Create Categories (like tasks) to sort tasks and create `findByCategory()`
-- [ ] Create User for login and registration
+- [x] Create Categories (like tasks) to sort tasks and create `findByCategory()`
+- [x] Create User for login and registration
 - [ ] Make tasks exchangeable between users
 - [ ] Swagger/OpenAPI Documentation
 - [ ] Dockerfile for easy deployment
