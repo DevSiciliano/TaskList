@@ -13,7 +13,8 @@ data class TaskResponseDto(
     var description: String,
     var priority: Int,
     var isCompleted: Boolean,
-    var category: CategoryResponseDto
+    var category: CategoryResponseDto,
+    var owner: UserSummaryDto
 )
 
 data class CreateTaskRequestDto(
@@ -44,4 +45,9 @@ data class UpdateTaskRequestDto(
     var priority: Int,
 
     var isCompleted: Boolean,
+)
+
+data class TransferTaskRequestDto(
+    @field:NotBlank(message = "Username must not be empty")
+    var username: String
 )

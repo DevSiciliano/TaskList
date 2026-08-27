@@ -3,6 +3,7 @@ package local.noto.tasklist.controllers
 import jakarta.validation.Valid
 import local.noto.tasklist.dtos.CreateTaskRequestDto
 import local.noto.tasklist.dtos.TaskResponseDto
+import local.noto.tasklist.dtos.TransferTaskRequestDto
 import local.noto.tasklist.dtos.UpdateTaskRequestDto
 import local.noto.tasklist.dtos.mapper.toResponseDto
 import local.noto.tasklist.models.Task
@@ -41,4 +42,8 @@ class TaskController(
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long) =
         taskService.delete(id)
+
+    @PostMapping("/{id}/transfer")
+    fun transfer(@PathVariable id: Long, @Valid @RequestBody dto: TransferTaskRequestDto): TaskResponseDto =
+        taskService.transfer(id, dto)
 }

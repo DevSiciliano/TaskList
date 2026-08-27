@@ -21,5 +21,9 @@ class Task(
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    var category: Category
+    var category: Category,
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    var owner: User
 )

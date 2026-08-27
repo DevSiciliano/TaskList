@@ -5,6 +5,7 @@ import local.noto.tasklist.dtos.TaskResponseDto
 import local.noto.tasklist.dtos.UpdateTaskRequestDto
 import local.noto.tasklist.models.Category
 import local.noto.tasklist.models.Task
+import local.noto.tasklist.models.User
 
 fun Task.toResponseDto(): TaskResponseDto =
     TaskResponseDto(
@@ -13,15 +14,17 @@ fun Task.toResponseDto(): TaskResponseDto =
         description = description,
         priority = priority,
         isCompleted = isCompleted,
-        category = category.toResponseDto()
+        category = category.toResponseDto(),
+        owner = owner.toSummaryDto()
     )
 
-fun CreateTaskRequestDto.toEntity(category: Category): Task =
+fun CreateTaskRequestDto.toEntity(category: Category, owner: User): Task =
     Task(
         title = title,
         description = description,
         priority = priority,
         isCompleted = false,
-        category = category
+        category = category,
+        owner = owner
     )
 
