@@ -46,6 +46,6 @@ TODO: defined after development to imitate a productive database system.
 - [x] Unit and integration tests (JUnit, Mock)
 - [x] Create Categories (like tasks) to sort tasks and create `findByCategory()`
 - [x] Create User for login and registration
-- [ ] Make tasks exchangeable between users
+- [x] Make tasks exchangeable between users
 - [ ] Swagger/OpenAPI Documentation
 - [ ] Dockerfile for easy deployment
