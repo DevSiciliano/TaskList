@@ -7,6 +7,7 @@ A simple Task List / ToDo List as a showcase project written and built in Kotlin
 - Spring Data JPA
 - <b>PostgreSQL</b> Database
 - Gradle
+- React (TypeScript) frontend, see [`frontend/`](frontend)
 
 ## API Endpoints
 
@@ -50,6 +51,17 @@ docker compose up -d --build
 
 This builds the app image, starts Postgres, waits until it's healthy, and then starts the app on `localhost:8080`.
 
+## Frontend
+
+A minimal React + TypeScript UI lives in [`frontend/`](frontend) — login/register and viewing/creating tasks. See [`frontend/README.md`](frontend/README.md) for setup.
+
+```
+cd frontend
+npm install
+npm run dev
+```
+
+Runs on `http://localhost:5173`.
 
 ## Roadmap
 - [x] Create Task logic to view, create, change and delete tasks
