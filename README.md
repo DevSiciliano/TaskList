@@ -18,6 +18,7 @@ A simple Task List / ToDo List as a showcase project written and built in Kotlin
 | POST    | `/api/tasks`        | Create a new Task       |
 | PUT     | `/api/tasks/{id}`   | Update an existing task |
 | DELETE  | `/api/tasks/{id}`   | Delete a task           |
+| POST    | `/api/tasks/{id}/trasnfer` | Trasnfer task to diffrent user |
 
 ### Category
 | Methode | Pfad              | Beschreibung            |
