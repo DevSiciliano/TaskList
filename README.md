@@ -48,5 +48,5 @@ This starts a Postgres instance on `localhost:5432` with database `tasklist`, us
 - [x] Create Categories (like tasks) to sort tasks and create `findByCategory()`
 - [x] Create User for login and registration
 - [x] Make tasks exchangeable between users
-- [ ] Swagger/OpenAPI Documentation
+- [x] Swagger/OpenAPI Documentation
 - [ ] Dockerfile for easy deployment
