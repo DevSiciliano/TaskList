@@ -40,6 +40,16 @@ docker compose up -d
 
 This starts a Postgres instance on `localhost:5432` with database `tasklist`, user `tasklist` and password `tasklist` (see `docker-compose.yml`). The connection details are configured in `src/main/resources/application.properties`. Tables are created/updated automatically on startup via `spring.jpa.hibernate.ddl-auto=update`.
 
+## Deployment
+
+The app itself is also part of `docker-compose.yml` and can be built and run in a container via the included `Dockerfile`:
+
+```
+docker compose up -d --build
+```
+
+This builds the app image, starts Postgres, waits until it's healthy, and then starts the app on `localhost:8080`.
+
 
 ## Roadmap
 - [x] Create Task logic to view, create, change and delete tasks
@@ -50,4 +60,4 @@ This starts a Postgres instance on `localhost:5432` with database `tasklist`, us
 - [x] Create User for login and registration
 - [x] Make tasks exchangeable between users
 - [x] Swagger/OpenAPI Documentation
-- [ ] Dockerfile for easy deployment
+- [x] Dockerfile for easy deployment
