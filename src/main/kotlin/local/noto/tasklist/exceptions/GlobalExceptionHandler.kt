@@ -42,7 +42,7 @@ class GlobalExceptionHandler {
     fun handleUsernameExists(ex: UsernameAlreadyExistsException): ResponseEntity<ErrorResponse> =
         ResponseEntity
             .status(HttpStatus.CONFLICT)
-            .body(ErrorResponse(HttpStatus.CONFLICT.value(), "Username already exists"))
+            .body(ErrorResponse(HttpStatus.CONFLICT.value(), ex.message ?: "Username already exists"))
 
     @ExceptionHandler(BadCredentialsException::class)
     fun handleBadCredentials(ex: BadCredentialsException): ResponseEntity<ErrorResponse> =

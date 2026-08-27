@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
+import local.noto.tasklist.models.Category
 
 data class TaskResponseDto(
     val id: Long,
@@ -12,6 +13,7 @@ data class TaskResponseDto(
     var description: String,
     var priority: Int,
     var isCompleted: Boolean,
+    var category: CategoryResponseDto
 )
 
 data class CreateTaskRequestDto(
@@ -24,7 +26,9 @@ data class CreateTaskRequestDto(
 
     @field:Min(value = 1, message = "Priority must be at least 1")
     @field:Max(value = 10, message = "Priority must be at most 10")
-    var priority: Int
+    var priority: Int,
+
+    var categoryId: Long
 )
 
 data class UpdateTaskRequestDto(
@@ -39,5 +43,5 @@ data class UpdateTaskRequestDto(
     @field:Max(value = 10, message = "Priority must be at most 10")
     var priority: Int,
 
-    var isCompleted: Boolean
+    var isCompleted: Boolean,
 )

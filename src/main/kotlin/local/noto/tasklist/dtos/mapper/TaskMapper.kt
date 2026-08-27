@@ -3,6 +3,7 @@ package local.noto.tasklist.dtos.mapper
 import local.noto.tasklist.dtos.CreateTaskRequestDto
 import local.noto.tasklist.dtos.TaskResponseDto
 import local.noto.tasklist.dtos.UpdateTaskRequestDto
+import local.noto.tasklist.models.Category
 import local.noto.tasklist.models.Task
 
 fun Task.toResponseDto(): TaskResponseDto =
@@ -11,21 +12,16 @@ fun Task.toResponseDto(): TaskResponseDto =
         title = title,
         description = description,
         priority = priority,
-        isCompleted = isCompleted
+        isCompleted = isCompleted,
+        category = category.toResponseDto()
     )
 
-fun CreateTaskRequestDto.toEntity(): Task =
+fun CreateTaskRequestDto.toEntity(category: Category): Task =
     Task(
         title = title,
         description = description,
         priority = priority,
-        isCompleted = false
+        isCompleted = false,
+        category = category
     )
 
-fun UpdateTaskRequestDto.toEntity(): Task =
-    Task(
-        title = title,
-        description = description,
-        priority = priority,
-        isCompleted = isCompleted
-    )

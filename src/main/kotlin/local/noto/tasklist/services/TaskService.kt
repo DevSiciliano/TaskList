@@ -7,12 +7,14 @@ import local.noto.tasklist.dtos.mapper.toEntity
 import local.noto.tasklist.dtos.mapper.toResponseDto
 import local.noto.tasklist.exceptions.ResourceNotFoundException
 import local.noto.tasklist.models.Task
+import local.noto.tasklist.repositories.CategoryRepository
 import local.noto.tasklist.repositories.TaskRepository
 import org.springframework.stereotype.Service
 
 @Service
 class TaskService(
-    private val taskRepository: TaskRepository
+    private val taskRepository: TaskRepository,
+    private val categoryRepository: CategoryRepository
 ) {
 
     fun getAll(): List<TaskResponseDto> =
@@ -21,8 +23,12 @@ class TaskService(
     fun getById(id: Long): TaskResponseDto =
         findTaskOrThrow(id).toResponseDto()
 
-    fun create(dto: CreateTaskRequestDto): TaskResponseDto =
-        taskRepository.save(dto.toEntity()).toResponseDto()
+    fun create(dto: CreateTaskRequestDto): TaskResponseDto {
+        val category = categoryRepository.findById(dto.categoryId)
+            .orElseThrow { ResourceNotFoundException("Category with ID ${dto.categoryId} not found") }
+
+        return taskRepository.save(dto.toEntity(category)).toResponseDto()
+    }
 
     fun update(dto: UpdateTaskRequestDto, id: Long): TaskResponseDto  {
         val existingTask = findTaskOrThrow(id)
